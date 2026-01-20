@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
+  <meta name="description" content="FL Tech - Desenvolvimento de sites, aplicativos e sistemas web que geram resultados reais: mais vendas, leads qualificados e presença digital forte em Patos de Minas e todo Brasil."/>
+  <meta name="keywords" content="desenvolvimento web, criação de sites, aplicativo mobile, agência digital Patos de Minas, sites futuristas, e-commerce, SaaS"/>
+  <meta name="author" content="FL Tech"/>
+  <title>FL Tech | Sites & Apps que Geram Resultados Reais</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg: #0b0f1a;
+      --bg-card: rgba(15, 20, 35, 0.65);
+      --dark: #05070f;
+      --blue: #00d4ff;
+      --blue-dark: #00aaff;
+      --accent: #7c3aed;
+      --text: #e5f0ff;
+      --text-light: #a3c9ff;
+      --gray: #8899aa;
+      --white: #ffffff;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: rgba(5, 7, 15, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 1000;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid rgba(0, 212, 255, 0.08);
+    }
+    header.scrolled {
+      padding: 0.6rem 1rem;
+      box-shadow: 0 5px 20px rgba(0, 212, 255, 0.1);
+    }
+    nav {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo img {
+      height: 45px;
+      filter: drop-shadow(0 0 12px rgba(0,212,255,0.55));
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      position: relative;
+      transition: color 0.3s;
+      padding: 0.3rem 0;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(90deg, var(--blue), var(--accent));
+      transition: width 0.4s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--white);
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 24px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1001;
+    }
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: var(--blue);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(7px, 7px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+    #hero {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(135deg, #0b0f1a 0%, #001122 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 0 1rem;
+    }
+    #particles-js {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+    .hero-content {
+      max-width: 980px;
+      width: 100%;
+      padding: 0 1rem;
+      z-index: 2;
+    }
+    .hero-title {
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      margin-bottom: 1.2rem;
+      background: linear-gradient(90deg, #00d4ff, #a78bfa, #ffffff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 50px rgba(0,212,255,0.45);
+      padding: 0 0.5rem;
+    }
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 4vw, 1.6rem);
+      margin-bottom: 2.5rem;
+      color: var(--text-light);
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 0.5rem;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      border: 2px solid var(--blue);
+      color: var(--blue);
+      font-size: clamp(1rem, 4vw, 1.2rem);
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.35s ease;
+      box-shadow: 0 0 25px rgba(0,212,255,0.35);
+      min-height: 56px;
+    }
+    .cta-btn:hover {
+      background: linear-gradient(90deg, var(--blue), var(--accent));
+      color: var(--dark);
+      transform: translateY(-4px) scale(1.04);
+      box-shadow: 0 15px 30px rgba(0,212,255,0.5);
+    }
+    .cta-btn:active {
+      transform: translateY(-2px) scale(1.02);
+    }
+    section {
+      padding: 5rem 1rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    h2 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--blue);
+      text-shadow: 0 0 30px rgba(0,212,255,0.35);
+      padding: 0 0.5rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid rgba(0,212,255,0.15);
+      border-radius: 16px;
+      padding: 1.8rem;
+      transition: all 0.4s ease;
+      backdrop-filter: blur(10px);
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: var(--blue);
+      box-shadow: 0 20px 40px rgba(0,212,255,0.22);
+    }
+    .portfolio-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+      cursor: pointer;
+      aspect-ratio: 16/9;
+    }
+    .portfolio-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s ease;
+      loading: lazy;
+    }
+    .portfolio-item:hover img {
+      transform: scale(1.1);
+    }
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent 50%);
+      opacity: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 1.5rem;
+      transition: opacity 0.4s ease;
+      color: white;
+      font-size: 1.4rem;
+      font-weight: 600;
+      text-shadow: 0 2px 10px black;
+    }
+    .portfolio-item:hover .portfolio-overlay {
+      opacity: 1;
+    }
+    #depoimentos .grid {
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+      gap: 1.5rem;
+    }
+    .testimonial {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 1.8rem;
+      border: 1px solid rgba(0,212,255,0.12);
+      position: relative;
+      transition: all 0.3s;
+    }
+    .testimonial:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0,212,255,0.2);
+    }
+    .testimonial .client-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .testimonial img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--blue-dark);
+      box-shadow: 0 0 15px rgba(0,212,255,0.4);
+    }
+    .client-info .name {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .client-info .role {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+    .stars {
+      color: #ffd700;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+    .whatsapp-float {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 32px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      z-index: 9999;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .whatsapp-float:hover,
+    .whatsapp-float:active {
+      transform: scale(1.15);
+      box-shadow: 0 8px 25px rgba(37,213,102,0.55);
+    }
+    .whatsapp-float i {
+      line-height: 1;
+    }
+    footer {
+      text-align: center;
+      padding: 3rem 1rem 1.5rem;
+      background: var(--dark);
+      border-top: 1px solid rgba(0,212,255,0.12);
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: rgba(5,7,15,0.98);
+        flex-direction: column;
+        gap: 0;
+        padding: 5rem 2rem 2rem;
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        box-shadow: -5px 0 30px rgba(0,0,0,0.5);
+      }
+      .nav-links.active { right: 0; }
+      .nav-links a {
+        width: 100%;
+        padding: 1rem 0;
+        font-size: 1.1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+      }
+      .nav-links a:last-child { border-bottom: none; }
+      section { padding: 4rem 1rem; }
+      .hero-content { padding-top: 3rem; }
+      .card { padding: 1.5rem; }
+      .portfolio-overlay {
+        opacity: 1;
+        background: linear-gradient(to top, rgba(0,0,0,0.85), transparent 60%);
+      }
+      .testimonial { padding: 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: 2.2rem; }
+      .hero-subtitle { font-size: 1rem; }
+      .cta-btn {
+        padding: 0.9rem 2rem;
+        min-height: 52px;
+        width: 100%;
+        max-width: 300px;
+      }
+      h2 { margin-bottom: 2.5rem; }
+      .grid { gap: 1.2rem; }
+      .whatsapp-float {
+        width: 56px;
+        height: 56px;
+        font-size: 28px;
+        bottom: 1.2rem;
+        right: 1.2rem;
+      }
+      footer {
+        padding: 2.5rem 1rem 1.2rem;
+        font-size: 0.85rem;
+      }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      section { padding: 6rem 2rem; }
+      .hero-content { padding: 0 2rem; }
+      .nav-links { gap: 1.2rem; }
+      .nav-links a { font-size: 0.9rem; }
+    }
+    @media screen and (max-width: 767px) {
+      input, select, textarea { font-size: 16px !important; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="header">
+    <nav>
+      <a href="#" class="logo">
+        <img src="https://www.shutterstock.com/image-vector/letter-f-tech-logo-design-260nw-2494001163.jpg" alt="FL Tech Logo">
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu de navegação">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="#hero">Início</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#portfolio">Portfólio</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div id="particles-js"></div>
+    <div class="hero-content" data-aos="fade-up" data-aos-duration="1300">
+      <h1 class="hero-title">FL TECH</h1>
+      <p class="hero-subtitle">Criamos sites, aplicativos e sistemas que transformam visitantes em clientes e aumentam faturamento de empresas em Patos de Minas e todo o Brasil.</p>
+      <a href="https://api.whatsapp.com/send?phone=5511965232040&text=Olá!%20Quero%20um%20orçamento%20para%20site%20e/ou%20aplicativo" class="cta-btn" target="_blank" rel="noopener">Falar agora no WhatsApp</a>
+    </div>
+  </section>
+
+  <section id="servicos" data-aos="fade-up">
+    <h2>Nossos Serviços</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Sites Institucionais & E-commerce</h3>
+        <p>Sites rápidos, modernos e otimizados para conversão. Design responsivo + SEO + integração com pagamentos.</p>
+      </div>
+      <div class="card">
+        <h3>Aplicativos Mobile</h3>
+        <p>Apps nativos e híbridos (iOS/Android) para delivery, vendas, agendamento, fidelidade e mais.</p>
+      </div>
+      <div class="card">
+        <h3>Sistemas Web Personalizados</h3>
+        <p>CRMs, ERPs leves, dashboards, áreas de membros, automações e integrações com WhatsApp/API.</p>
+      </div>
+      <div class="card">
+        <h3>Manutenção & Growth</h3>
+        <p>Suporte contínuo, melhorias de performance, SEO avançado e campanhas de remarketing.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio" data-aos="fade-up">
+    <h2>Portfólio Selecionado</h2>
+    <div class="grid">
+      <div class="portfolio-item">
+        <img src="images/port1.jpg"
+             alt="Projeto de site para restaurante sofisticado estilo Dalva e Dito" loading="lazy">
+        <div class="portfolio-overlay">Dalva e Dito</div>
+      </div>
+      
+      <div class="portfolio-item">
+        <img src="images/port2.jpg"
+             alt="Projeto de site para restaurante premium estilo Oro" loading="lazy">
+        <div class="portfolio-overlay">Duo-Gourmet</div>
+      </div>
+      
+      <div class="portfolio-item">
+        <img src="images/port3.jpg"
+             alt="Projeto de site para restaurante gastronômico estilo Evvai" loading="lazy">
+        <div class="portfolio-overlay">Ráscal</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="depoimentos" data-aos="fade-up">
+    <h2>O que nossos clientes dizem</h2>
+    <div class="grid">
+      <div class="testimonial">
+        <div class="client-info">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Cliente 1" loading="lazy">
+          <div>
+            <div class="name">Mariana Costa</div>
+            <div class="role">Proprietária - Loja Bella Modas</div>
+          </div>
+        </div>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>“O site dobrou nossas vendas online em menos de 4 meses. Design lindo e atendimento impecável!”</p>
+      </div>
+      <div class="testimonial">
+        <div class="client-info">
+          <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Cliente 2" loading="lazy">
+          <div>
+            <div class="name">Rafael Mendes</div>
+            <div class="role">CEO - TechSolutions</div>
+          </div>
+        </div>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>“Desenvolveram nosso sistema interno + app de clientes. Entrega no prazo e resultado acima do esperado.”</p>
+      </div>
+      <div class="testimonial">
+        <div class="client-info">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Cliente 3" loading="lazy">
+          <div>
+            <div class="name">Juliana Almeida</div>
+            <div class="role">Fundadora - Estúdio de Beleza</div>
+          </div>
+        </div>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+        <p>“Agenda online + site bonito. Meus clientes adoram marcar pelo celular. Recomendo demais!”</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre" data-aos="fade-up">
+    <h2>Quem Somos</h2>
+    <div class="card" style="max-width: 900px; margin: 0 auto; text-align:center;">
+      <p style="font-size:1.1rem; margin-bottom:1.2rem;">
+        A <strong>FL Tech</strong> é uma agência digital de Patos de Minas – MG especializada em criar experiências digitais que geram resultado real para negócios locais e nacionais.
+      </p>
+      <p style="color:var(--text-light);">
+        Combinamos design futurista, tecnologia de ponta e foco total em conversão para ajudar empresas a crescerem de forma sustentável na internet.
+      </p>
+    </div>
+  </section>
+
+  <section id="contato" data-aos="fade-up">
+    <h2>Comece Hoje Seu Projeto</h2>
+    <div class="card" style="max-width: 700px; margin: 0 auto; text-align:center;">
+      <p style="font-size:1.2rem; margin-bottom:1.8rem;">
+        Vamos conversar sem compromisso? Respondo em até 2 horas durante o dia.
+      </p>
+      <a href="https://api.whatsapp.com/send?phone=5511965232040&text=Olá!%20Vi%20o%20site%20FL%20Tech%20e%20quero%20um%20orçamento." class="cta-btn" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp" style="margin-right:0.6rem;"></i> Falar no WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <a href="https://api.whatsapp.com/send?phone=5511965232040&text=Olá!%20Vi%20o%20site%20e%20quero%20saber%20mais" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <footer>
+    <p>© 2026 FL Tech - Todos os direitos reservados | <a href="#contato">Contato</a> | Desenvolvido com 💙 em Patos de Minas</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    // Configuração otimizada de partículas
+    function loadParticles() {
+      const isMobile = window.innerWidth <= 768;
+      particlesJS('particles-js', {
+        particles: {
+          number: { value: isMobile ? 50 : 90 },
+          color: { value: '#00d4ff' },
+          shape: { type: 'circle' },
+          opacity: { value: isMobile ? 0.35 : 0.45, random: true },
+          size: { value: isMobile ? 2.5 : 3.5 },
+          line_linked: { 
+            enable: true, 
+            distance: isMobile ? 120 : 160, 
+            color: '#00aaff', 
+            opacity: isMobile ? 0.25 : 0.35, 
+            width: 1 
+          },
+          move: { enable: true, speed: isMobile ? 2 : 2.8 }
+        },
+        interactivity: {
+          events: {
+            onhover: { enable: !isMobile, mode: 'repulse' },
+            onclick: { enable: !isMobile, mode: 'push' }
+          }
+        },
+        retina_detect: true
+      });
+    }
+    loadParticles();
+
+    window.addEventListener('resize', () => {
+      if (window.pJSDom && window.pJSDom[0]) {
+        window.pJSDom[0].pJS.fn.vendors.destroypJS();
+        loadParticles();
+      }
+    });
+  </script>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      once: true,
+      duration: 800,
+      offset: 100,
+      delay: 100,
+      disable: window.innerWidth < 768
+    });
+  </script>
+
+  <script>
+    // Header scroll
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Menu mobile
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+      document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    document.addEventListener('click', e => {
+      if (!navLinks.contains(e.target) && !hamburger.contains(e.target) && navLinks.classList.contains('active')) {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (target) {
+          const headerHeight = document.getElementById('header').offsetHeight;
+          window.scrollTo({
+            top: target.offsetTop - headerHeight - 20,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Resize animation stopper
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      document.body.classList.add('resize-animation-stopper');
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => document.body.classList.remove('resize-animation-stopper'), 400);
+    });
+  </script>
+</body>
+</html>
